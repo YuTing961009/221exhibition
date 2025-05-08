@@ -1,0 +1,280 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(135deg, #e0eaff, #fdf4ff);
+  overflow: hidden;
+  font-family: 'Noto Serif TC', serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* 背景虹光特效 */
+.rainbow-glow {
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  background: conic-gradient(from 0deg, #f0f, #0ff, #ff0, #f0f);
+  filter: blur(80px);
+  opacity: 0.2;
+  animation: rotateGlow 15s linear infinite;
+  z-index: 0;
+}
+
+@keyframes rotateGlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 隱藏時 */
+.scene.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* 顯示時 */
+.scene {
+  width: 300px;
+  height: 300px;
+  perspective: 1000px;
+  z-index: 1;
+  transition: all 0.5s ease;
+  opacity: 1;
+  transform: scale(0.7); /* 🔥 新增這行！縮小 */
+}
+
+/* 縮小到左上角 */
+.scene.moved {
+  position: absolute;
+  top: -100px;
+  left: -100px;
+  transform: scale(0.15);
+  z-index: 9999;
+}
+
+/* 立方體旋轉動畫 */
+.cube {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(0deg) rotateY(0deg);
+}
+
+/* 滑鼠暫停旋轉 */
+.scene:hover .cube {
+  animation-play-state: paused;
+}
+
+/* 基本立方體面樣式 */
+.face {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 5px solid rgba(255, 255, 255, 1);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+  transition: transform 0.3s ease;
+  z-index: 1;
+}
+
+.face:hover {  
+  cursor: pointer;
+}
+
+/* 脫離與發光效果（未縮小時才有） */
+.scene:not(.moved) .face:hover {
+  transform: none;
+}
+
+/* 六面設定 hover 效果 */
+.scene:not(.moved) .face:nth-child(1):hover { transform: rotateY(0deg) translateZ(190px); }
+.scene:not(.moved) .face:nth-child(2):hover { transform: rotateY(90deg) translateZ(190px); }
+.scene:not(.moved) .face:nth-child(3):hover { transform: rotateY(180deg) translateZ(190px); }
+.scene:not(.moved) .face:nth-child(4):hover { transform: rotateY(-90deg) translateZ(190px); }
+.scene:not(.moved) .face:nth-child(5):hover { transform: rotateX(90deg) translateZ(190px); }
+.scene:not(.moved) .face:nth-child(6):hover { transform: rotateX(-90deg) translateZ(190px); }
+
+/* 金光特效 */
+.face::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border: 4px solid transparent;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 2;
+  transition: opacity 0.3s ease;
+  border-image: linear-gradient(90deg, gold, #fffbc1, gold) 1;
+  animation: glowPulse 1.2s ease-in-out infinite;
+}
+
+/* 滑鼠進入時 */
+.scene:not(.moved) .face:hover::before {
+  opacity: 1;
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 6px gold);
+  }
+  50% {
+    filter: drop-shadow(0 0 12px #ffec8b);
+  }
+}
+
+/* 六面定位 */
+.face:nth-child(1) { transform: rotateY(0deg) translateZ(150px); }
+.face:nth-child(2) { transform: rotateY(90deg) translateZ(150px); }
+.face:nth-child(3) { transform: rotateY(180deg) translateZ(150px); }
+.face:nth-child(4) { transform: rotateY(-90deg) translateZ(150px); }
+.face:nth-child(5) { transform: rotateX(90deg) translateZ(150px); }
+.face:nth-child(6) { transform: rotateX(-90deg) translateZ(150px); }
+
+/* 標題 */
+.title {
+  position: absolute;
+  bottom: 40px;
+  font-size: 1.5rem;
+  color: #222;
+  text-shadow: 0 0 8px rgba(255,255,255,0.8);
+  z-index: 2;
+}
+
+/* 彈出視窗 */
+.popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  transform: scale(0);
+  background: white;
+  padding: 30px;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.popup.show {
+  transform: scale(1);
+}
+
+.popup-content {
+  text-align: center;
+  font-size: 2rem;
+  color: #222;
+  line-height: 2;
+  max-width: 90%;
+}
+
+/* popup 色系 */
+.popup.red    { background: rgba(255, 0, 0, 0.3); }
+.popup.yellow { background: rgba(255, 255, 0, 0.3); }
+.popup.green  { background: rgba(0, 255, 0, 0.3); }
+.popup.blue   { background: rgba(0, 0, 255, 0.3); }
+.popup.brown  { background: rgba(255, 132, 0, 0.3); }
+.popup.black  { background: rgba(0, 0, 0, 0.3); color: white; }
+
+/* 六面圖片 */
+.face:nth-child(1) {
+  background: url('https://i.postimg.cc/D0bK2nzN/IMG-1522.png') center/cover no-repeat;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+.face:nth-child(2) {
+  background: url('https://i.postimg.cc/Ws0k60Wj/IMG-1523.png') center/cover no-repeat;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+.face:nth-child(3) {
+  background: url('https://i.postimg.cc/t4nD2JMw/IMG-1528.png') center/cover no-repeat;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+.face:nth-child(4) {
+  background: url('https://i.postimg.cc/cLz2LPpy/IMG-1526.png') center/cover no-repeat;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+.face:nth-child(5) {
+  background: url('https://i.postimg.cc/jSB3bPfR/IMG-1527.png') center/cover no-repeat;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+.face:nth-child(6) {
+  background: url('https://i.postimg.cc/hGHkpNsb/IMG-1525.png') center/cover no-repeat;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+/* hover 立方體特效 */
+.face:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px gold, 0 0 40px gold, 0 0 60px gold;
+}
+
+.scene.moved .face:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.scene:not(.moved):hover .face {
+  opacity: 0.15;
+  filter: brightness(1.5) blur(1px);
+}
+
+.scene:not(.moved):hover .face:hover {
+  opacity: 1;
+  filter: brightness(1.2) drop-shadow(0 0 15px gold);
+  z-index: 5;
+}
+
+.scene.moved .face {
+  background: none !important;
+  backdrop-filter: blur(8px);
+  border: 5px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  transition: opacity 1s ease;
+}
+
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cover.hide {
+  opacity: 0;
+  pointer-events: none;
+}
