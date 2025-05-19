@@ -38,7 +38,7 @@ body {
   pointer-events: none;
 }
 
-/* 顯示時 */
+/* 立方體場景 */
 .scene {
   width: 300px;
   height: 300px;
@@ -46,7 +46,7 @@ body {
   z-index: 1;
   transition: all 0.5s ease;
   opacity: 1;
-  transform: scale(0.7); /* 🔥 新增這行！縮小 */
+  transform: scale(0.7);
 }
 
 /* 縮小到左上角 */
@@ -58,7 +58,7 @@ body {
   z-index: 9999;
 }
 
-/* 立方體旋轉動畫 */
+/* 立方體 */
 .cube {
   width: 100%;
   height: 100%;
@@ -67,12 +67,12 @@ body {
   transform: rotateX(0deg) rotateY(0deg);
 }
 
-/* 滑鼠暫停旋轉 */
+/* 停止旋轉 */
 .scene:hover .cube {
   animation-play-state: paused;
 }
 
-/* 基本立方體面樣式 */
+/* 立方體面 */
 .face {
   position: absolute;
   width: 300px;
@@ -85,16 +85,16 @@ body {
   z-index: 1;
 }
 
-.face:hover {  
+.face:hover {
   cursor: pointer;
 }
 
-/* 脫離與發光效果（未縮小時才有） */
+/* hover 脫離效果（大立方體時才有） */
 .scene:not(.moved) .face:hover {
   transform: none;
 }
 
-/* 六面設定 hover 效果 */
+/* hover 推出效果 */
 .scene:not(.moved) .face:nth-child(1):hover { transform: rotateY(0deg) translateZ(190px); }
 .scene:not(.moved) .face:nth-child(2):hover { transform: rotateY(90deg) translateZ(190px); }
 .scene:not(.moved) .face:nth-child(3):hover { transform: rotateY(180deg) translateZ(190px); }
@@ -119,21 +119,17 @@ body {
   animation: glowPulse 1.2s ease-in-out infinite;
 }
 
-/* 滑鼠進入時 */
+/* hover 金光 */
 .scene:not(.moved) .face:hover::before {
   opacity: 1;
 }
 
 @keyframes glowPulse {
-  0%, 100% {
-    filter: drop-shadow(0 0 6px gold);
-  }
-  50% {
-    filter: drop-shadow(0 0 12px #ffec8b);
-  }
+  0%, 100% { filter: drop-shadow(0 0 6px gold); }
+  50% { filter: drop-shadow(0 0 12px #ffec8b); }
 }
 
-/* 六面定位 */
+/* 六面立體位置 */
 .face:nth-child(1) { transform: rotateY(0deg) translateZ(150px); }
 .face:nth-child(2) { transform: rotateY(90deg) translateZ(150px); }
 .face:nth-child(3) { transform: rotateY(180deg) translateZ(150px); }
@@ -141,7 +137,7 @@ body {
 .face:nth-child(5) { transform: rotateX(90deg) translateZ(150px); }
 .face:nth-child(6) { transform: rotateX(-90deg) translateZ(150px); }
 
-/* 標題 */
+/* 標題文字 */
 .title {
   position: absolute;
   bottom: 40px;
@@ -149,9 +145,15 @@ body {
   color: #222;
   text-shadow: 0 0 8px rgba(255,255,255,0.8);
   z-index: 2;
+  transition: opacity 0.5s ease;
 }
 
-/* 彈出視窗 */
+/* 進入popup時讓標題消失 */
+.title.hidden {
+  opacity: 0;
+}
+
+/* popup 視窗 */
 .popup {
   position: absolute;
   top: 0;
@@ -192,64 +194,39 @@ body {
 .popup.black  { background: rgba(0, 0, 0, 0.3); color: white; }
 
 /* 六面圖片 */
-.face:nth-child(1) {
-  background: url('https://i.postimg.cc/D0bK2nzN/IMG-1522.png') center/cover no-repeat;
-  backdrop-filter: none;
-  box-shadow: none;
-}
+.face:nth-child(1) { background: url('https://i.postimg.cc/D0bK2nzN/IMG-1522.png') center/cover no-repeat; backdrop-filter: none; box-shadow: none; }
+.face:nth-child(2) { background: url('https://i.postimg.cc/Ws0k60Wj/IMG-1523.png') center/cover no-repeat; backdrop-filter: none; box-shadow: none; }
+.face:nth-child(3) { background: url('https://i.postimg.cc/t4nD2JMw/IMG-1528.png') center/cover no-repeat; backdrop-filter: none; box-shadow: none; }
+.face:nth-child(4) { background: url('https://i.postimg.cc/cLz2LPpy/IMG-1526.png') center/cover no-repeat; backdrop-filter: none; box-shadow: none; }
+.face:nth-child(5) { background: url('https://i.postimg.cc/jSB3bPfR/IMG-1527.png') center/cover no-repeat; backdrop-filter: none; box-shadow: none; }
+.face:nth-child(6) { background: url('https://i.postimg.cc/hGHkpNsb/IMG-1525.png') center/cover no-repeat; backdrop-filter: none; box-shadow: none; }
 
-.face:nth-child(2) {
-  background: url('https://i.postimg.cc/Ws0k60Wj/IMG-1523.png') center/cover no-repeat;
-  backdrop-filter: none;
-  box-shadow: none;
-}
-
-.face:nth-child(3) {
-  background: url('https://i.postimg.cc/t4nD2JMw/IMG-1528.png') center/cover no-repeat;
-  backdrop-filter: none;
-  box-shadow: none;
-}
-
-.face:nth-child(4) {
-  background: url('https://i.postimg.cc/cLz2LPpy/IMG-1526.png') center/cover no-repeat;
-  backdrop-filter: none;
-  box-shadow: none;
-}
-
-.face:nth-child(5) {
-  background: url('https://i.postimg.cc/jSB3bPfR/IMG-1527.png') center/cover no-repeat;
-  backdrop-filter: none;
-  box-shadow: none;
-}
-
-.face:nth-child(6) {
-  background: url('https://i.postimg.cc/hGHkpNsb/IMG-1525.png') center/cover no-repeat;
-  backdrop-filter: none;
-  box-shadow: none;
-}
-
-/* hover 立方體特效 */
+/* hover 閃光效果 */
 .face:hover {
   transform: scale(1.05);
   box-shadow: 0 0 20px gold, 0 0 40px gold, 0 0 60px gold;
 }
 
+/* 小立方體時不再閃光 */
 .scene.moved .face:hover {
   transform: none;
   box-shadow: none;
 }
 
+/* hover 時其他面變淡 */
 .scene:not(.moved):hover .face {
   opacity: 0.15;
   filter: brightness(1.5) blur(1px);
 }
 
+/* hover 時當前面亮起 */
 .scene:not(.moved):hover .face:hover {
   opacity: 1;
   filter: brightness(1.2) drop-shadow(0 0 15px gold);
   z-index: 5;
 }
 
+/* 小立方體樣式 */
 .scene.moved .face {
   background: none !important;
   backdrop-filter: blur(8px);
@@ -257,6 +234,7 @@ body {
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
+/* 封面圖 */
 .cover {
   position: fixed;
   top: 0;
@@ -280,4 +258,19 @@ body {
 .cover.hide {
   opacity: 0;
   pointer-events: none;
+}
+
+.popup-image {
+  max-width: 100%;
+  height: auto;
+  position: absolute;
+  top: 2.4%;
+  left: 50.1%;
+  transform: translateX(-50%);
+  z-index: 1;
+  /* 移除 pointer-events: none; */
+  cursor: pointer; /* 加上手型游標提示 */
+}
+.popup-image#che-2{
+  top: 9%;
 }

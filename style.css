@@ -1,0 +1,223 @@
+/* 全域重置 & 開啟縱向滾動 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* 容器 & 背景 */
+#chart-bg-container {
+  position: relative;
+  width: 100vw;
+}
+
+#bg-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* 半腰標記：用來觸發 spotlight */
+#mid-marker {
+  position: absolute;
+  top: 40%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  z-index: 2;
+}
+
+/* 讓 .abs 這兩個區塊水平置中 */
+/* 讓 .abs 這兩個區塊初始隱藏＋淡入過場 */
+.abs {
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  width: 80%;
+  text-align: center;
+
+  opacity: 0;
+  /* 初始透明 */
+  visibility: hidden;
+  /* 初始隱藏 */
+  transition: opacity 1s ease-out;
+  /* 1s 淡入 */
+}
+
+/* 當加上 .active 時淡入顯示 */
+.abs.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+#preface-title {
+  top: 100vh;
+  z-index: 999;
+  color: white;
+  text-shadow: 1px 1px 5px gray;
+}
+
+#preface-content {
+  top: 110vh;
+  z-index: 999;
+  text-shadow: 1px 1px 2px gray;
+}
+
+/* 在 preface-content 中的每個 <p> 預設隱藏＋往下位移 */
+#preface-content p {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+  line-height: 25px;
+  color: white;
+}
+
+/* 加上 .show 後，淡入＋回到原位 */
+#preface-content p.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Overlay 共用設定：預設隱藏 */
+.overlay-img {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s ease-out;
+}
+
+/* static overlays（Title & Rainbow）：絕對定位，疊在背景上 */
+.overlay-img.static {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  z-index: 5;
+  transition: opacity 1.5s ease-out;
+}
+
+.overlay-img.static#title-img {
+  transition: opacity 3s ease-out;
+}
+
+/* Spotlight 改用寬度 100%、高度自動 */
+.overlay-img:not(.static) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: auto;
+  /* ← 改這裡 */
+  object-fit: contain;
+  /* 或直接拿掉 object-fit */
+  z-index: 10;
+  transition: opacity 2s ease-out;
+}
+
+
+/* 一律使用同一個 active 規則控制淡入 */
+.overlay-img.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 讓按鈕初始隱藏並能淡入 */
+#preface-button {
+  display: inline-block;
+  margin: 20px auto 0;
+  padding: 10px 20px;
+  background-color: rgba(255,255,255,0.8);
+  color: #000;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 1rem;
+
+  /* 以下為淡入設定 */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease-out;
+}
+
+/* 加上 .active 後才顯示 */
+#preface-button.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* （原本的 hover 效果可保留） */
+#preface-button:hover {
+  background-color: rgba(255,255,255,1);
+}
+
+@media only screen and (min-width: 600px) {
+  html, body {
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f0f0;
+  }
+
+  .device-frame {
+    width: min(390px, 90vw);
+    aspect-ratio: 390 / 844;
+    border: 16px solid #333;
+    border-radius: 56px;
+    box-shadow: 0 0 0 8px #ccc;
+    background: #000;
+    position: relative;   /* ← 定位基準：假手機框 */
+    overflow: auto;
+  }
+
+  /* ❶ 取消 chart-bg-container 的 relative，讓 .abs、.overlay-img 定位到 .device-frame */
+  .device-frame #chart-bg-container {
+    width: 100%;
+    position: static;     /* ← 從 relative 改成 static */
+  }
+
+  /* ❷ 所有前言 (.abs) 和 overlay-img 都直接絕對定位到 device-frame */
+  .device-frame .overlay-img,
+  .device-frame .abs {
+    position: absolute;
+    z-index: 999;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* ❸ rainbow & title 貼頂全寬 */
+  .device-frame .overlay-img.static {
+    top: 0;
+    width: 100%;
+    height: auto;
+  }
+
+  /* ❹ spotlight 也貼頂全寬 */
+  .device-frame .overlay-img:not(.static) {
+    top: 0;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  /* ❺ 前言標題、內容 回到「原本的位置」：100% / 110% frame 高度 */
+  .device-frame #preface-title {
+    top: 100%;   /* 第一個畫面之後 */
+    z-index: 9999;
+  }
+  .device-frame #preface-content {
+    top: 110%;   /* 再往下一點 */
+    z-index: 9999;
+  }
+}

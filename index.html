@@ -1,21 +1,45 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>二中數資成發 · 202505</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Static Overlay Demo</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
 
-  <div class="image-wrapper">
-    <img src="image/AFD121B6-0073-47C0-B7BE-4B1B114D777F (1).PNG.jpg" alt="長條底圖" />
-    <div class="floating-text">
-      <h1>評中心</h1>
-      <p>這是評中心的介紹內容。</p>
+<body>
+  <div class="device-frame">
+    <div id="chart-bg-container">
+      <!-- 背景圖：自然高度撐開框內捲動 -->
+      <img id="bg-img"
+        src="https://lh3.googleusercontent.com/pw/AP1GczPI84gO_udguaZFkLvuALjNB-M0zirSfOx_BXazqhVoN_pcsS9IaUY-IB9LCZYUCdPcOiuyerP6sm_RFvjKuf8mL90eWQkmM8nV6CqyFw6lhaEVS9IItZuu3bpmmwvTj0XfIqhMCqQbTLrd202nlbgE=w230-h919-s-no-gm?authuser=0"
+        alt="背景圖">
+
+      <div id="mid-marker"></div>
+      <div id="preface-title" class="abs"><h1>前言</h1></div>
+      <div id="preface-content" class="abs">
+        <p>Lorem ipsum dolor sit amet...</p>
+        <p>Nullam condimentum sem tincidunt pretium...</p>
+        <a id="preface-button" href="/cube.html" >各專題介紹</a>
+      </div>
+
+      <img id="rainbow-img" class="overlay-img static initial"
+        src="https://lh3.googleusercontent.com/pw/AP1GczPs0uSCf6pbEUgyzjMoWEEMdb9sDR8nkor36cEkqxQ_hTivfJfz7dx72mvkC78qFPWWJPtAMoUA5-x3Bl0Oyjkr6b-PtgDLrBRnyqcxSEjqi2jOqka7tdT90f9zXIVmH5DVuZsqSe70dDqiYY80vG8T=w230-h919-s-no-gm?authuser=0"
+        alt="Rainbow">
+      <img id="title-img" class="overlay-img static initial"
+        src="https://lh3.googleusercontent.com/pw/AP1GczPdz4l0ueeRh5AolkRS4QEdcsefFs7R8obqOVCFx8_pZ4dzkQUbzmHq_J2SRxRLcNbL9w9m3ZZ-8LIz6-WEAAwi_ouLInLzT4CQAe2ORM-D3ofhtXP0em0G76bie03kQFTdbo0IWX7oKI3OsoxTqHmV=w230-h919-s-no-gm?authuser=0"
+        alt="Title">
+
+      <img id="spotlight-l-img" class="overlay-img"
+        src="https://lh3.googleusercontent.com/pw/AP1GczNLI5F_bhEM7xIRKgDB9yye2G_XzkUjxCZpwQS9Ki_PsET1Yldf2qgWnfsJMIauJQM9btAPQggIaGVjYUyb_JcE0vkgAQl59l3n2SPZBZW2LD3IrBCiCVfD-QKRIv0zJBLyhOFl7m99YmKau6FAiAxO=w230-h919-s-no-gm?authuser=0"
+        alt="Spotlight Left">
+      <img id="spotlight-r-img" class="overlay-img"
+        src="https://lh3.googleusercontent.com/pw/AP1GczNzBlNPx_Jf8HkKvw0ORXM3EJojAKfij3MKMkg2ijBmPjRv-8rLJL1lnFNOR0ioWV0dwBmYlxUEpNdgnnO4jpkrc-kpg5exJMUAXrc1gDvmhvatAuJzMbkKbrR5rgEALCqFBOiKHLZKEk192zr83Jbx=w230-h919-s-no-gm?authuser=0"
+        alt="Spotlight Right">
     </div>
   </div>
 
-  <script src="index.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
