@@ -65,7 +65,60 @@ faces.forEach((face, index) => {
       <img id="che-2" src="image/71826689-a710-43b0-ad4b-184994974de9-removebg-preview.png" alt="化學團隊圖" class="popup-image">
     </a>
         ` : ''}
+      
+      ${popupColors[index] === 'green' ? `
+        <a href="https://sites.google.com/stu.tcssh.tc.edu.tw/gut-myth/%E9%A6%96%E9%A0%81" target="_blank">
+          <img id="bio-1" src="image/IMG-1769-6.png" alt="生物團隊圖" class="popup-image">
+        </a>
+        <a href="https://sites.google.com/stu.tcssh.tc.edu.tw/yyds/%E5%8B%95%E7%89%A9%E8%88%87%E9%86%AB%E5%AD%B8%E7%B5%84" target="_blank">
+          <img id="bio-2" src="image/IMG-1773.png" alt="生物團隊圖" class="popup-image">
+        </a>
+        <a href="https://sites.google.com/stu.tcssh.tc.edu.tw/juice/%E9%A6%96%E9%A0%81" target="_blank">
+          <img id="bio-3" src="image/IMG-1771.png" alt="生物團隊圖" class="popup-image">
+        </a>
+      ` : ''}
+
+      ${popupColors[index] === 'yellow' ? `
+        <a href="https://hackmd.io/@Siestally/SJDvaQzakl" target="_blank">
+          <img id="math-1" src="image/IMG-1794.png" alt="數學團隊圖" class="popup-image">
+        </a>
+        <a href="https://sites.google.com/stu.tcssh.tc.edu.tw/yyds/%E6%95%B8%E5%AD%B8%E7%B5%84" target="_blank">
+          <img id="math-2" src="image/IMG-1795.png" alt="數學團隊圖" class="popup-image">
+        </a>
+            ` : ''}
+
+      ${popupColors[index] === 'blue' ? `
+        <a href="https://s2112403.wixsite.com/com-lab" target="_blank">
+          <img id="phy-1" src="image/IMG-1784.png" alt="物理團隊圖" class="popup-image">
+        </a>
+            ` : ''}      
+
+      ${popupColors[index] === 'black' ? `
+        <a href="https://www.google.com/?hl=zh_TW&safe=active&ssui=on" target="_blank">
+          <img id="com-1" src="image/IMG-1767.png" alt="資訊團隊圖" class="popup-image">
+        </a>
+           ` : ''}   
+
+      ${popupColors[index] === 'red' ? `
+        <a href="https://octavian-math-learning-process.my.canva.site/08" target="_blank">
+          <img id="liv-1" src="image/IMG-1796.png" alt="生科個人圖" class="popup-image">
+        </a>
+        <a href="https://sites.google.com/stu.tcssh.tc.edu.tw/212246/%E9%A6%96%E9%A0%81" target="_blank">
+          <img id="liv-2" src="image/IMG-1799.png" alt="生科個人圖" class="popup-image">
+        </a>
+        <a href="https://sites.google.com/stu.tcssh.tc.edu.tw/balancing-car-arduino" target="_blank">
+          <img id="liv-3" src="image/IMG-1798.png" alt="生科個人圖" class="popup-image">
+        </a>
+        <a href="https://sites.google.com/stu.tcssh.tc.edu.tw/21th-sky-and-future/%E9%A6%96%E9%A0%81" target="_blank">
+          <img id="liv-4" src="image/IMG-1797.png" alt="生科個人圖" class="popup-image">
+        </a>
+        <a href="https://sites.google.com/stu.tcssh.tc.edu.tw/21th-sky-and-future/%E9%A6%96%E9%A0%81" target="_blank">
+          <img id="liv-5" src="image/IMG-1800.png" alt="生科個人圖" class="popup-image">
+        </a>
+           ` : ''}   
+
       `;
+      
 
       title.classList.add('hidden');
       isMoved = true;

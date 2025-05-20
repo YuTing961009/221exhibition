@@ -183,15 +183,30 @@ body {
 }
 
 /* popup 色系 */
-.popup.red    { background: rgba(255, 0, 0, 0.3); }
-.popup.yellow { background: rgba(255, 255, 0, 0.3); }
-.popup.green  { background: rgba(0, 255, 0, 0.3); }
-.popup.blue   { background: rgba(0, 0, 255, 0.3); }
+.popup.red    {
+  background: url('image/266bfa88-9e18-462d-ba46-1f8c786aa96f.jfif') center/cover no-repeat;
+  color: white;
+}
+.popup.yellow {
+  background: url('image/266bfa88-9e18-462d-ba46-1f8c786aa96f.jfif') center/cover no-repeat;
+  color: white;
+}
+.popup.green  {  
+  background: url('image/266bfa88-9e18-462d-ba46-1f8c786aa96f.jfif') center/cover no-repeat;
+  color: white;
+}
+.popup.blue   {  
+  background: url('image/266bfa88-9e18-462d-ba46-1f8c786aa96f.jfif') center/cover no-repeat;
+  color: white;
+}
 .popup.brown  {
   background: url('image/266bfa88-9e18-462d-ba46-1f8c786aa96f.jfif') center/cover no-repeat;
   color: white;
 }
-.popup.black  { background: rgba(0, 0, 0, 0.3); color: white; }
+.popup.black  {
+  background: url('image/266bfa88-9e18-462d-ba46-1f8c786aa96f.jfif') center/cover no-repeat;
+  color: white;
+}
 
 /* 六面圖片 */
 .face:nth-child(1) { background: url('https://i.postimg.cc/D0bK2nzN/IMG-1522.png') center/cover no-repeat; backdrop-filter: none; box-shadow: none; }
@@ -264,8 +279,8 @@ body {
   max-width: 100%;
   height: auto;
   position: absolute;
-  top: 2.4%;
-  left: 50.1%;
+  top: 2%;
+  left: 51%;
   transform: translateX(-50%);
   z-index: 1;
   /* 移除 pointer-events: none; */
@@ -273,4 +288,74 @@ body {
 }
 .popup-image#che-2{
   top: 70%;
+}
+.popup-image#bio-1{
+  max-width: 100%;
+  top: 66%;
+  left: 50%;
+}
+.popup-image#bio-2{
+  max-width: 100%;
+  top: 1.6%;
+  left: 77%;
+}
+
+.popup-image#bio-3{
+  max-width: 100%;
+  top: 2%;
+  left: 25%;
+}
+
+.popup-image#math-1{
+  max-width: 100%;
+  top: 1%;
+  left: 50%;
+}
+
+.popup-image#math-2{
+  max-width: 100%;
+  top: 66%;
+  left: 50%;
+}
+
+.popup-image#phy-1{
+  max-width: 100%;
+  top: 63.6%;
+  left: 50%;
+}
+
+.popup-image#com-1{
+  max-width: 100%;
+  top: 65.7%;
+  left: 50%;
+}
+
+.popup-image#liv-1{
+  max-width: 100%;
+  top: 51.5%;
+  left: 76.2%;
+}
+
+.popup-image#liv-2{
+  max-width: 100%;
+  top: 7.8%;
+  left: 77%;
+}
+
+.popup-image#liv-3{
+  max-width: 100%;
+  top: 10.5%;
+  left: 25%;
+}
+
+.popup-image#liv-4{
+  max-width: 100%;
+  top: 71%;
+  left: 50%;
+}
+
+.popup-image#liv-5{
+  max-width: 100%;
+  top: 50%;
+  left: 26%;
 }
