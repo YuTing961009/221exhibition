@@ -74,6 +74,8 @@ body {
 
 /* 在 preface-content 中的每個 <p> 預設隱藏＋往下位移 */
 #preface-content p {
+  margin-top: 20px;
+  font-size: 18px;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 1s ease-out, tr  ansform 1s ease-out;

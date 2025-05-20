@@ -5,6 +5,7 @@ const popup = document.getElementById('popup');
 const popupContent = popup.querySelector('.popup-content');
 const cover = document.querySelector('.cover');
 const title = document.querySelector('.title');
+const subtitle = document.querySelector('.subtitle');
 
 let isMoved = false;
 let isDragging = false;
@@ -121,12 +122,14 @@ faces.forEach((face, index) => {
       
 
       title.classList.add('hidden');
+      subtitle.classList.add('hidden');
       isMoved = true;
     } else {
       // 回到大立方體
       scene.classList.remove('moved');
       popup.className = 'popup';
       title.classList.remove('hidden');
+      subtitle.classList.remove('hidden');
       autoRotate = true;
       isMoved = false;
     }

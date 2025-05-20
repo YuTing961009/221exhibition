@@ -178,7 +178,20 @@ html, body {
   z-index: 2;
   transition: opacity 0.5s ease;
 }
+
 .title.hidden { opacity: 0; }
+/* 小標文字 */
+.subtitle {
+  position: absolute;
+  bottom: 80px;           /* 調整到在主標題之上 */
+  width: 100%;
+  text-align: center;
+  font-size: 0.9rem;      /* 較小字型 */
+  color: #444;            /* 可自行調整顏色 */
+  z-index: 2;             /* 確保蓋在背景之上 */
+}
+.subtitle.hidden { opacity: 0; }
+
 .popup {
   position: absolute;
   top: 0; left: 0;
