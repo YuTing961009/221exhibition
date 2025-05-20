@@ -112,7 +112,7 @@ faces.forEach((face, index) => {
         <a href="https://sites.google.com/stu.tcssh.tc.edu.tw/21th-sky-and-future/%E9%A6%96%E9%A0%81" target="_blank">
           <img id="liv-4" src="image/IMG-1797.png" alt="生科個人圖" class="popup-image">
         </a>
-        <a href="https://sites.google.com/stu.tcssh.tc.edu.tw/21th-sky-and-future/%E9%A6%96%E9%A0%81" target="_blank">
+        <a href="https://yuting961009.github.io/221exhibition/" target="_blank">
           <img id="liv-5" src="image/IMG-1800.png" alt="生科個人圖" class="popup-image">
         </a>
            ` : ''}   
