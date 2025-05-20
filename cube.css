@@ -1,55 +1,88 @@
+/* cube.css */
+
+/* ---------- 0. 全域重置 & 關閉捲軸 ---------- */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-
-body {
+html, body {
+  width: 100vw;
   height: 100vh;
-  background: linear-gradient(135deg, #e0eaff, #fdf4ff);
-  overflow: hidden;
+  overflow: hidden;       /* 關鍵：全頁不出捲軸 */
   font-family: 'Noto Serif TC', serif;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
+  background: linear-gradient(135deg, #e0eaff, #fdf4ff);
 }
 
-/* 背景虹光特效 */
+/* ---------- 1. 封面 ---------- */
+.cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  transition: opacity 1s ease;
+}
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.cover.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---------- 2. 虹光裁切容器 ---------- */
+.glow-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;      /* 關鍵：裁切超出畫面部分 */
+  z-index: 0;
+}
+
+/* 旋轉的虹光方塊 */
 .rainbow-glow {
   position: absolute;
+  top: -10%;
+  left: -10%;
   width: 120%;
   height: 120%;
   background: conic-gradient(from 0deg, #f0f, #0ff, #ff0, #f0f);
   filter: blur(80px);
   opacity: 0.2;
   animation: rotateGlow 15s linear infinite;
-  z-index: 0;
 }
-
 @keyframes rotateGlow {
   from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  to   { transform: rotate(360deg); }
 }
 
-/* 隱藏時 */
+/* ---------- 3. 立方體場景 & 動畫 ---------- */
 .scene.hidden {
   opacity: 0;
   pointer-events: none;
 }
-
-/* 立方體場景 */
 .scene {
   width: 300px;
   height: 300px;
   perspective: 1000px;
   z-index: 1;
   transition: all 0.5s ease;
-  opacity: 1;
   transform: scale(0.7);
 }
-
-/* 縮小到左上角 */
 .scene.moved {
   position: absolute;
   top: -100px;
@@ -57,8 +90,6 @@ body {
   transform: scale(0.15);
   z-index: 9999;
 }
-
-/* 立方體 */
 .cube {
   width: 100%;
   height: 100%;
@@ -66,13 +97,9 @@ body {
   transform-style: preserve-3d;
   transform: rotateX(0deg) rotateY(0deg);
 }
-
-/* 停止旋轉 */
 .scene:hover .cube {
   animation-play-state: paused;
 }
-
-/* 立方體面 */
 .face {
   position: absolute;
   width: 300px;
@@ -84,32 +111,30 @@ body {
   transition: transform 0.3s ease;
   z-index: 1;
 }
+.face:nth-child(1) { transform: rotateY(0deg)   translateZ(150px); }
+.face:nth-child(2) { transform: rotateY(90deg)  translateZ(150px); }
+.face:nth-child(3) { transform: rotateY(180deg) translateZ(150px); }
+.face:nth-child(4) { transform: rotateY(-90deg) translateZ(150px); }
+.face:nth-child(5) { transform: rotateX(90deg)  translateZ(150px); }
+.face:nth-child(6) { transform: rotateX(-90deg) translateZ(150px); }
 
-.face:hover {
-  cursor: pointer;
-}
-
-/* hover 脫離效果（大立方體時才有） */
-.scene:not(.moved) .face:hover {
+/* Hover 效果 */
+.face:hover { cursor: pointer; }
+.scene:not(.moved) .face:hover { /* 大立方體時推出效果 */
   transform: none;
 }
-
-/* hover 推出效果 */
-.scene:not(.moved) .face:nth-child(1):hover { transform: rotateY(0deg) translateZ(190px); }
-.scene:not(.moved) .face:nth-child(2):hover { transform: rotateY(90deg) translateZ(190px); }
+.scene:not(.moved) .face:nth-child(1):hover { transform: rotateY(0deg)   translateZ(190px); }
+.scene:not(.moved) .face:nth-child(2):hover { transform: rotateY(90deg)  translateZ(190px); }
 .scene:not(.moved) .face:nth-child(3):hover { transform: rotateY(180deg) translateZ(190px); }
 .scene:not(.moved) .face:nth-child(4):hover { transform: rotateY(-90deg) translateZ(190px); }
-.scene:not(.moved) .face:nth-child(5):hover { transform: rotateX(90deg) translateZ(190px); }
+.scene:not(.moved) .face:nth-child(5):hover { transform: rotateX(90deg)  translateZ(190px); }
 .scene:not(.moved) .face:nth-child(6):hover { transform: rotateX(-90deg) translateZ(190px); }
 
 /* 金光特效 */
 .face::before {
   content: '';
   position: absolute;
-  top: -4px;
-  left: -4px;
-  right: -4px;
-  bottom: -4px;
+  top: -4px; left: -4px; right: -4px; bottom: -4px;
   border: 4px solid transparent;
   pointer-events: none;
   opacity: 0;
@@ -118,26 +143,32 @@ body {
   border-image: linear-gradient(90deg, gold, #fffbc1, gold) 1;
   animation: glowPulse 1.2s ease-in-out infinite;
 }
-
-/* hover 金光 */
-.scene:not(.moved) .face:hover::before {
-  opacity: 1;
-}
-
 @keyframes glowPulse {
-  0%, 100% { filter: drop-shadow(0 0 6px gold); }
-  50% { filter: drop-shadow(0 0 12px #ffec8b); }
+  0%,100% { filter: drop-shadow(0 0 6px gold); }
+  50%    { filter: drop-shadow(0 0 12px #ffec8b); }
+}
+.scene:not(.moved) .face:hover::before { opacity: 1; }
+
+/* 其他 hover 效果 */
+.scene:not(.moved):hover .face {
+  opacity: 0.15;
+  filter: brightness(1.5) blur(1px);
+}
+.scene:not(.moved):hover .face:hover {
+  opacity: 1;
+  filter: brightness(1.2) drop-shadow(0 0 15px gold);
+  z-index: 5;
 }
 
-/* 六面立體位置 */
-.face:nth-child(1) { transform: rotateY(0deg) translateZ(150px); }
-.face:nth-child(2) { transform: rotateY(90deg) translateZ(150px); }
-.face:nth-child(3) { transform: rotateY(180deg) translateZ(150px); }
-.face:nth-child(4) { transform: rotateY(-90deg) translateZ(150px); }
-.face:nth-child(5) { transform: rotateX(90deg) translateZ(150px); }
-.face:nth-child(6) { transform: rotateX(-90deg) translateZ(150px); }
+/* 小立方體樣式 */
+.scene.moved .face {
+  background: none !important;
+  backdrop-filter: blur(8px);
+  border: 5px solid rgba(255,255,255,0.6);
+  box-shadow: 0 0 20px rgba(255,255,255,0.2);
+}
 
-/* 標題文字 */
+/* Popup 樣式 */
 .title {
   position: absolute;
   bottom: 40px;
@@ -147,19 +178,11 @@ body {
   z-index: 2;
   transition: opacity 0.5s ease;
 }
-
-/* 進入popup時讓標題消失 */
-.title.hidden {
-  opacity: 0;
-}
-
-/* popup 視窗 */
+.title.hidden { opacity: 0; }
 .popup {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
   transform: scale(0);
   background: white;
   padding: 30px;
@@ -169,11 +192,7 @@ body {
   align-items: center;
   transition: transform 0.3s ease;
 }
-
-.popup.show {
-  transform: scale(1);
-}
-
+.popup.show { transform: scale(1); }
 .popup-content {
   text-align: center;
   font-size: 2rem;
@@ -181,6 +200,8 @@ body {
   line-height: 2;
   max-width: 90%;
 }
+/* 可自行加上各色 popup 背景 */
+
 
 /* popup 色系 */
 .popup.red    {

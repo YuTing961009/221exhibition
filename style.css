@@ -65,7 +65,7 @@ body {
   color: white;
   text-shadow: 1px 1px 5px gray;
 }
-
+  
 #preface-content {
   top: 110vh;
   z-index: 999;
@@ -76,7 +76,7 @@ body {
 #preface-content p {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 1s ease-out, transform 1s ease-out;
+  transition: opacity 1s ease-out, tr  ansform 1s ease-out;
   line-height: 25px;
   color: white;
 }

@@ -30,8 +30,8 @@ const popupColors = ['brown', 'blue', 'green', 'yellow', 'red', 'black'];
 let autoRotate = true;
 function animate() {
   if (autoRotate && !isDragging) {
-    rotateX += 0.1;
-    rotateY += 0.2;
+    rotateX += 0.4;
+    rotateY += 0.8;
     updateCubeTransform();
   }
   requestAnimationFrame(animate);
