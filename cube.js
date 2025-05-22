@@ -68,7 +68,7 @@ faces.forEach((face, index) => {
         ` : ''}
       
       ${popupColors[index] === 'green' ? `
-        <a href="https://sites.google.com/stu.tcssh.tc.edu.tw/gut-myth/%E9%A6%96%E9%A0%81" target="_blank">
+        <a href="https://sites.google.com/stu.tcssh.tc.edu.tw/juice/%E9%A6%96%E9%A0%81" target="_blank">
           <img id="bio-1" src="image/IMG-1769-6.png" alt="生物團隊圖" class="popup-image">
         </a>
         <a href="https://sites.google.com/stu.tcssh.tc.edu.tw/yyds/%E5%8B%95%E7%89%A9%E8%88%87%E9%86%AB%E5%AD%B8%E7%B5%84" target="_blank">
@@ -107,13 +107,13 @@ faces.forEach((face, index) => {
         <a href="https://sites.google.com/stu.tcssh.tc.edu.tw/212246/%E9%A6%96%E9%A0%81" target="_blank">
           <img id="liv-2" src="image/IMG-1799.png" alt="生科個人圖" class="popup-image">
         </a>
-        <a href="https://sites.google.com/stu.tcssh.tc.edu.tw/balancing-car-arduino" target="_blank">
+        <a href="https://sites.google.com/stu.tcssh.tc.edu.tw/djksf" target="_blank">
           <img id="liv-3" src="image/IMG-1798.png" alt="生科個人圖" class="popup-image">
         </a>
         <a href="https://sites.google.com/stu.tcssh.tc.edu.tw/21th-sky-and-future/%E9%A6%96%E9%A0%81" target="_blank">
           <img id="liv-4" src="image/IMG-1797.png" alt="生科個人圖" class="popup-image">
         </a>
-        <a href="https://yuting961009.github.io/221exhibition/" target="_blank">
+        <a href="https://www.canva.com/design/DAGoFommjJo/zuMMDwrlDgcL3u_MIhMAzA/edit?utm_content=DAGoFommjJo&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">
           <img id="liv-5" src="image/IMG-1800.png" alt="生科個人圖" class="popup-image">
         </a>
            ` : ''}   
