@@ -68,7 +68,7 @@ faces.forEach((face, index) => {
         ` : ''}
       
       ${popupColors[index] === 'green' ? `
-        <a href="https://sites.google.com/stu.tcssh.tc.edu.tw/juice/%E9%A6%96%E9%A0%81" target="_blank">
+        <a href="https://sites.google.com/stu.tcssh.tc.edu.tw/gut-myth/%E9%A6%96%E9%A0%81" target="_blank">
           <img id="bio-1" src="image/IMG-1769-6.png" alt="生物團隊圖" class="popup-image">
         </a>
         <a href="https://sites.google.com/stu.tcssh.tc.edu.tw/yyds/%E5%8B%95%E7%89%A9%E8%88%87%E9%86%AB%E5%AD%B8%E7%B5%84" target="_blank">
